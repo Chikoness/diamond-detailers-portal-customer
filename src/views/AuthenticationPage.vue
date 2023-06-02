@@ -3,13 +3,13 @@
     <ion-content :fullscreen="true">
       <div id="authenticate">
         <div class="list">
-          <form @submit.prevent="submitICNumber" class="dark">
+          <form @submit.prevent="submitEmail" class="dark">
             <div class="input-group">
-              <p>Enter your IC Number to view employer/employee page</p>
+              <p>Enter your Email to login</p>
               <ion-input
                 fill="outline"
-                pattern="\d{6}[\-]\d{2}[\-]\d{4}"
-                v-model="icNumber"
+                type="email"
+                v-model="email"
                 required
               ></ion-input>
             </div>
@@ -17,6 +17,7 @@
               <ion-button type="submit" color="light">Submit</ion-button>
             </div>
             <p class="error">{{ message }}</p>
+            <p class="to-customer" @click="toCustomerPage()">Log me in anonymously</p>
           </form>
         </div>
       </div>
@@ -38,7 +39,7 @@ export default {
 
   data() {
     return {
-      icNumber: null,
+      email: null,
       message: null,
     };
   },
@@ -56,23 +57,22 @@ export default {
   },
 
   methods: {
-    submitICNumber() {
+    toCustomerPage() {
+      window.location.href = "/customer"
+    },
+
+    submitEmail() {
       const data = {
-        icNumber: this.icNumber,
+        email: this.email,
       };
 
       axios
-        .post(process.env.VUE_APP_BACKEND + "/api/employees/authenticate", data)
+        .post(process.env.VUE_APP_BACKEND + "/api/customer/get", data)
         .then((res) => {
-          localStorage.setItem("name", res.data.name);
-          localStorage.setItem("icNumber", res.data.icNumber);
-          localStorage.setItem("securityLvl", res.data.securityLvl);
-          localStorage.setItem(
-            "type",
-            res.data.securityLvl == 1 ? "employer" : "employee"
-          );
+          localStorage.setItem("name", res.data.data.name);
+          localStorage.setItem("email", res.data.data.email);
 
-          window.location.href = "/employee";
+          window.location.href = "/customer";
         })
         .catch((e) => {
           this.message =
@@ -112,6 +112,11 @@ export default {
       
       p {
         margin-bottom: 1rem;
+
+        &.to-customer {
+          text-decoration: underline;
+          cursor: pointer;
+        }
       }
     }
   }

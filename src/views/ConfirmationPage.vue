@@ -34,7 +34,7 @@
 
         <ion-button
           color="warning"
-          :href="checkUserType == 'customer' ? '/customer' : '/employee'"
+          href="/customer"
           @click="registerCustomer"
         >
           &lt; Back to Home
@@ -94,16 +94,6 @@ export default {
   computed: {
     getPageType() {
       return this.$route.params.id;
-    },
-
-    checkUserType() {
-      const type = localStorage.getItem("type");
-
-      if (type == null) {
-        return "customer";
-      }
-
-      return type;
     },
 
     confirmMessageType() {

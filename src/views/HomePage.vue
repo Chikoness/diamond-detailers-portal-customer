@@ -10,15 +10,10 @@
 
       <div id="main" class="container">
         <div class="logo"></div>
-        <span>Welcome to</span>
+        <span>Welcome to Customer's</span>
         <h2>Diamond Detailers Portal</h2>
-        <h4>Are you employer/employee or customer?</h4>
         <br />
-        <ion-button color="warning" :href="isEmployerEmployee ? '/employee' : '/authentication'"
-          >Employer / Employee</ion-button
-        >
-        <br />
-        <ion-button color="warning" href="/customer" @click="registerCustomer">Customer</ion-button>
+        <ion-button color="warning" href="/authentication">Login</ion-button>
       </div>
     </ion-content>
   </ion-page>
@@ -43,21 +38,12 @@ export default {
   },
 
   mounted() {
-    if (this.isEmployerEmployee) { 
-      window.location.href = "/employee"
-    } else if (this.checkUserType == 'customer') {
+    if (localStorage.getItem("email")) {
       window.location.href = "/customer"
     }
   },
 
   computed: {
-    isEmployerEmployee() {
-      return (
-        localStorage.getItem("type") == "employer" ||
-        localStorage.getItem("type") == "employee"
-      );
-    },
-
     checkUserType() {
       const type = localStorage.getItem("type")
 
@@ -65,13 +51,7 @@ export default {
     },
   },
 
-  methods: {
-    registerCustomer() {
-      if (localStorage.getItem("type") == null) {
-        localStorage.setItem("type", "customer")
-      } 
-    }
-  }
+  methods: {}
 };
 </script>
 
@@ -209,6 +189,7 @@ form {
 
   ion-button {
     border: 1px solid #000;
+    font-size: 0.9rem;
   }
 }
 

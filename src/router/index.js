@@ -1,14 +1,11 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import HomePage from '../views/HomePage'
-import EmployeePage from '../views/EmployeePage'
 import CustomerPage from '../views/CustomerPage'
-import AppointmentPage from '../views/AppointmentPage'
 import NewAppointmentPage from '../views/Appointment/NewAppointmentPage'
 import ExistingAppointmentPage from '../views/Appointment/ExistingAppointmentPage'
-import AuthenticationPage from '../views/AuthenticationPage'
 import ConfirmationPage from '../views/ConfirmationPage'
-import RegisterEmployee from '../views/Employee/RegisterEmployee'
-import EditEmployee from '../views/Employee/EditEmployee'
+import AuthenticationPage from '../views/AuthenticationPage'
+import AppointmentPage from '@/views/AppointmentPage'
 
 const routes = [
   {
@@ -21,29 +18,14 @@ const routes = [
     component: HomePage
   },
   {
-    path: '/employee',
-    name: 'Employee',
-    component: EmployeePage
-  },
-  {
-    path: '/employee/new',
-    name: 'Register New Employee',
-    component: RegisterEmployee
-  },
-  {
-    path: '/employee/edit/:id',
-    name: 'Change Employee Details',
-    component: EditEmployee
+    path: '/customer',
+    name: 'Customer',
+    component: CustomerPage
   },
   {
     path: '/authentication',
     name: 'Authenticate',
     component: AuthenticationPage
-  },
-  {
-    path: '/customer',
-    name: 'Customer',
-    component: CustomerPage
   },
   {
     path: '/appointment',

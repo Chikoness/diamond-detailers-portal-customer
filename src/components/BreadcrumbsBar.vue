@@ -5,9 +5,7 @@
       <ion-breadcrumbs>
         <ion-breadcrumb
           :href="
-            checkUserType == 'employer' || checkUserType == 'employee'
-              ? '/employee'
-              : checkUserType == 'customer'
+            checkUserType
               ? '/customer'
               : '/home'
           "
@@ -19,23 +17,6 @@
             :color="light"
           ></ion-icon>
         </ion-breadcrumb>
-
-        <!-- <ion-breadcrumb
-          href="/appointment"
-          v-if="
-            checkCurrentPath.includes('appointment') ||
-            (checkCurrentPath.includes('appointment') &&
-              checkCurrentPath.includes('new')) ||
-            checkCurrentPath.includes('edit')
-          "
-        >
-          <p>Appointment</p>
-          <ion-icon
-            slot="separator"
-            :icon="arrowForward"
-            :color="light"
-          ></ion-icon>
-        </ion-breadcrumb> -->
 
         <ion-breadcrumb v-if="checkCurrentPage == 'New Appointment'">
           <p>New Appointment</p>
@@ -88,9 +69,7 @@ export default {
 
   computed: {
     checkUserType() {
-      const type = localStorage.getItem("type");
-
-      return type;
+      return localStorage.getItem("email");
     },
 
     checkCurrentPage() {

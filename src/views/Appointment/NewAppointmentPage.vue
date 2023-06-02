@@ -53,7 +53,7 @@
               </ion-select-option>
             </ion-select>
             <div class="date-div">
-              <fieldset :class="checkUserType == 'customer' ? '' : 'employee'">
+              <fieldset class="customer">
                 <legend>Date</legend>
                 <input
                   :placeholder="dateToString"
@@ -103,7 +103,7 @@
 
       <popup-box
         v-if="openPopUp"
-        :isEmployee="checkUserType !== 'customer'"
+        :isEmployee="false"
         message="Confirm appointment?"
         :message2="
           'Date: ' +
@@ -193,24 +193,9 @@ export default {
 
       return dToString == d2ToString;
     },
-
-    checkUserType() {
-      const type = localStorage.getItem("type");
-
-      if (type == null) {
-        return "customer";
-      }
-
-      return type;
-    },
   },
 
   mounted() {
-    if (this.checkUserType !== 'customer') {
-      window.location.href = "/employee"
-      return;
-    }
-
     let temp = new Date().getTime();
     this.date = new Date(temp + 1 * 24 * 60 * 60 * 1000);
 

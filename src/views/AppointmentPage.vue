@@ -2,14 +2,13 @@
   <ion-page>
     <ion-content :fullscreen="true">
       <div id="customer-appt" class="container">
-        <div class="list" v-if="checkUserType == 'customer'">
+        <div class="list">
           <ion-button href="/appointment/new" color="warning" class="appt-btn"
             >New Appointment</ion-button
           >
 
           <form
             @submit.prevent="submitApptId"
-            :class="{ dark: checkUserType !== 'customer' }"
           >
             <div class="input-group">
               <ion-input
@@ -22,7 +21,7 @@
             </div>
             <div class="form-btn">
               <ion-button
-                :color="checkUserType == 'customer' ? 'warning' : 'light'"
+                color="light"
                 type="submit"
                 >Submit</ion-button
               >
@@ -32,11 +31,6 @@
             </p>
           </form>
         </div>
-
-        <template v-else>
-          <p class="title">Appointments</p>
-          <display-table-page :data="appts" />
-        </template>
       </div>
     </ion-content>
   </ion-page>
@@ -45,7 +39,6 @@
 <script>
 import { IonContent, IonPage, IonButton, IonInput } from "@ionic/vue";
 import axios from "axios";
-import DisplayTablePage from "@/components/DisplayTablePage.vue";
 
 export default {
   components: {
@@ -53,20 +46,9 @@ export default {
     IonPage,
     IonButton,
     IonInput,
-    DisplayTablePage,
   },
 
-  computed: {
-    checkUserType() {
-      const type = localStorage.getItem("type");
-
-      if (type == null) {
-        return "customer";
-      }
-
-      return type;
-    },
-  },
+  computed: {},
 
   data() {
     return {
