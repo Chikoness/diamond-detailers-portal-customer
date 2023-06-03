@@ -35,14 +35,14 @@
           <ion-select
             v-if="viewType == 'week'"
             interface="popover"
-            label="Select week"
+            label="Select day"
             fill="outline"
             label-placement="stacked"
-            v-model="selectedWeek"
+            v-model="selectedDay"
             required
-            @ionChange="selectedWeek = $event.target.value"
+            @ionChange="selectedDay = $event.target.value"
           >
-            <ion-select-option v-for="d in numOfWeeks()" :key="d" :value="d">
+            <ion-select-option v-for="d in numOfDaysInMonth()" :key="d" :value="d">
               {{ d }}
             </ion-select-option>
           </ion-select>
@@ -50,6 +50,7 @@
         <bar-chart
           :data="dirtData"
           :monthToDisplay="selectedMonth"
+          :selectedDay="selectedDay"
           :viewType="viewType"
           :months="months"
         />
@@ -63,9 +64,8 @@ import { IonContent, IonPage, IonSelect, IonSelectOption } from "@ionic/vue";
 import BarChart from "@/components/BarChart.vue";
 import axios from "axios";
 import _ from "lodash";
-import startOfWeek from "date-fns/startOfWeek";
-import endOfWeek from "date-fns/endOfWeek";
 import getWeeksInMonth from "date-fns/getWeeksInMonth";
+import getDaysInMonth from 'date-fns/getDaysInMonth'
 
 export default {
   components: {
@@ -74,6 +74,18 @@ export default {
     IonSelect,
     IonSelectOption,
     BarChart,
+  },
+
+  watch: {
+    selectedMonth: {
+      deep: true,
+      handler(val) {
+        if (val !== this.selectedMonthTemp) {
+          this.selectedDay = 1
+          this.selectedMonthTemp = val
+        }
+      }
+    }
   },
 
   data() {
@@ -98,7 +110,8 @@ export default {
 
       viewType: "month",
       selectedMonth: null,
-      selectedWeek: null,
+      selectedMonthTemp: null,
+      selectedDay: 1,
     };
   },
 
@@ -110,6 +123,8 @@ export default {
 
   mounted() {
     this.selectedMonth = this.months[new Date().getMonth()];
+    this.selectedMonthTemp = this.months[new Date().getMonth()];
+    this.selectedDay = new Date().getDate();
 
     axios
       .post(process.env.VUE_APP_BACKEND + "/api/customer/getDirtInfo", {
@@ -152,11 +167,8 @@ export default {
       return m;
     },
 
-    numOfWeeks() {
-      console.log(
-        getWeeksInMonth(new Date(2023, this.months.indexOf(this.selectedMonth)))
-      );
-      return getWeeksInMonth(new Date(2023, this.months.indexOf(this.selectedMonth)));
+    numOfDaysInMonth() {
+      return getDaysInMonth(new Date(2023, this.months.indexOf(this.selectedMonth)), 1)
     },
   },
 };
