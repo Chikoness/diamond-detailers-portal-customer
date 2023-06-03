@@ -18,9 +18,13 @@
     "@ionic/vue": "^7.0.0",
     "@ionic/vue-router": "^7.0.0",
     "axios": "^1.4.0",
+    "chart.js": "^4.3.0",
     "core-js": "^3.6.5",
+    "date-fns": "^2.30.0",
     "ionicons": "^7.0.0",
+    "lodash": "^4.17.21",
     "vue": "^3.2.47",
+    "vue-chartjs": "^5.2.0",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {

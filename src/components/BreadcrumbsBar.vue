@@ -43,12 +43,8 @@
           <p>Edit Appointment</p>
         </ion-breadcrumb>
 
-        <ion-breadcrumb v-if="checkCurrentPage == 'Register New Employee'">
-          <p>Register New Employee</p>
-        </ion-breadcrumb>
-
-        <ion-breadcrumb v-if="checkCurrentPage == 'Change Employee Details'">
-          <p>Change Employee Details</p>
+        <ion-breadcrumb v-if="checkCurrentPage == 'History'">
+          <p>History</p>
         </ion-breadcrumb>
       </ion-breadcrumbs>
     </ion-toolbar>

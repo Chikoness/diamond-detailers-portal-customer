@@ -6,6 +6,7 @@ import ExistingAppointmentPage from '../views/Appointment/ExistingAppointmentPag
 import ConfirmationPage from '../views/ConfirmationPage'
 import AuthenticationPage from '../views/AuthenticationPage'
 import AppointmentPage from '@/views/AppointmentPage'
+import HistoryPage from '@/views/History/HistoryPage'
 
 const routes = [
   {
@@ -46,6 +47,11 @@ const routes = [
     path: '/confirmation/:id',
     name: 'Confirmation',
     component: ConfirmationPage
+  },
+  {
+    path: '/history',
+    name: 'History',
+    component: HistoryPage
   }
 ]
 
