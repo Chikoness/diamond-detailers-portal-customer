@@ -122,6 +122,7 @@
               <ion-select-option value="Pending">Pending</ion-select-option>
               <ion-select-option value="Paid">Paid</ion-select-option>
               <ion-select-option value="Finished">Finished</ion-select-option>
+              <ion-select-option value="Cancelled">Cancelled</ion-select-option>
             </ion-select>
           </div>
 
@@ -294,6 +295,7 @@ export default {
       editModeOn: false,
       deletePopUp: false,
       availableTimeSlotList: null,
+      actualAvailableTimeSlotList: null,
       availableServices: null,
       date2: null,
       oldDate: null,
@@ -364,6 +366,7 @@ export default {
         timeSlot: this.formDetails.timeSlot,
         oldTimeSlot: this.timeSlot2,
         status: this.formDetails.status,
+        email: this.formDetails.email
       };
 
       axios
@@ -410,6 +413,7 @@ export default {
           data
         )
         .then((res) => {
+          this.actualAvailableTimeSlotList = res.data.timeSlots;
           this.availableTimeSlotList = res.data.timeSlots;
           this.date2 = this.formDetails.date;
           this.message = null;

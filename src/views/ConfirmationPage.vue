@@ -133,6 +133,8 @@ export default {
 
 <style lang="scss">
 #confirmation {
+  margin-top: 5rem;
+
   .msg-content {
     height: auto;
     margin-bottom: 2rem;

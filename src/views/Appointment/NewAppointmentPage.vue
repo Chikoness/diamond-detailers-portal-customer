@@ -199,6 +199,14 @@ export default {
     let temp = new Date().getTime();
     this.date = new Date(temp + 1 * 24 * 60 * 60 * 1000);
 
+    if (localStorage.getItem("name") !== undefined) {
+      this.name = localStorage.getItem("name")
+    }
+
+    if (localStorage.getItem("email") !== undefined) {
+      this.email = localStorage.getItem("email")
+    }
+
     axios
       .get(process.env.VUE_APP_BACKEND + "/api/appointment/new/getAllServices")
       .then((res) => {
@@ -234,6 +242,7 @@ export default {
         .post(process.env.VUE_APP_BACKEND + "/api/appointment/new", data)
         .then((res) => {
           localStorage.setItem("name", this.name);
+          localStorage.setItem("email", this.email)
           localStorage.setItem("id", res.data.id);
           
           window.location.href = "/confirmation/makeAppt/";
