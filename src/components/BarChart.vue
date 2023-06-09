@@ -16,7 +16,7 @@ import {
   LinearScale,
 } from "chart.js";
 
-import _ from 'lodash'
+import _ from "lodash";
 import startOfWeek from "date-fns/startOfWeek";
 import endOfWeek from "date-fns/endOfWeek";
 import getWeekOfMonth from "date-fns/getWeekOfMonth";
@@ -136,11 +136,11 @@ export default {
       Object.values(this.data).forEach((y) => {
         Object.keys(y).forEach((mon) => {
           if (this.monthToDisplay == mon) {
-            const filtered = y[mon]
+            const filtered = y[mon];
 
             _.entries(filtered).forEach(([key, value]) => {
               dates.push(this.monthToDisplay + " " + key);
-            })
+            });
           } else {
             return dates;
           }
@@ -170,78 +170,114 @@ export default {
     },
 
     viewTypeDisplay(type) {
-      let displayPoints = []
+      let displayPoints = [];
 
       Object.values(this.data).forEach((dat) => {
         Object.keys(dat).forEach((mm) => {
-
           if (this.monthToDisplay == mm) {
             let point = dat[mm];
-  
+
             _.entries(point).forEach(([key, p]) => {
-              if (this.viewType == 'month') {
-                switch (type) {
-                  case "front":
-                    displayPoints.push(p.hood + p.lHeadlight + p.rHeadlight + p.windscreen);
-                    break;
-                  case "top":
-                    displayPoints.push(p.hood);
-                    break;
-                  case "back":
-                    displayPoints.push(p.boot);
-                    break;
-                  case "left":
-                    displayPoints.push(
-                      p.lfDoor + p.rfDoor + p.lfWheel + p.rfWheel + p.lfWindow + p.rfWindow
-                    );
-                    break;
-                  case "right":
-                    displayPoints.push(
-                      p.lbDoor + p.rbDoor + p.lbWheel + p.rbWheel + p.lbWindow + p.rbWindow
-                    );
-                    break;
-                }
-              } else {
-                let start = startOfWeek(
-                  new Date(2023, this.months.indexOf(this.monthToDisplay), this.selectedDay),
-                  { weekStartsOn: 1 }
-                );
-                let end = endOfWeek(
-                  new Date(2023, this.months.indexOf(this.monthToDisplay), this.selectedDay),
-                  { weekStartsOn: 1 }
-                );
-  
-                for (let i = start.getDate(); i <= end.getDate(); i++) {
-                  if (point.hasOwnProperty(i)) {
-                    switch (type) {
-                      case "front":
-                        displayPoints.push(point[i].hood + point[i].lHeadlight + point[i].rHeadlight + point[i].windscreen);
-                        break;
-                      case "top":
-                        displayPoints.push(point[i].hood);
-                        break;
-                      case "back":
-                        displayPoints.push(point[i].boot);
-                        break;
-                      case "left":
-                        displayPoints.push(
-                          point[i].lfDoor + point[i].rfDoor + point[i].lfWheel + point[i].rfWheel + point[i].lfWindow + point[i].rfWindow
-                        );
-                        break;
-                      case "right":
-                        displayPoints.push(
-                          point[i].lbDoor + point[i].rbDoor + point[i].lbWheel + point[i].rbWheel + point[i].lbWindow + point[i].rbWindow
-                        );
-                        break;
+              if (p != undefined) {
+                if (this.viewType == "month") {
+                  switch (type) {
+                    case "front":
+                      displayPoints.push(
+                        p.hood + p.lHeadlight + p.rHeadlight + p.windscreen
+                      );
+                      break;
+                    case "top":
+                      displayPoints.push(p.hood);
+                      break;
+                    case "back":
+                      displayPoints.push(p.boot);
+                      break;
+                    case "left":
+                      displayPoints.push(
+                        p.lfDoor +
+                          p.rfDoor +
+                          p.lfWheel +
+                          p.rfWheel +
+                          p.lfWindow +
+                          p.rfWindow
+                      );
+                      break;
+                    case "right":
+                      displayPoints.push(
+                        p.lbDoor +
+                          p.rbDoor +
+                          p.lbWheel +
+                          p.rbWheel +
+                          p.lbWindow +
+                          p.rbWindow
+                      );
+                      break;
+                  }
+                } else {
+                  let start = startOfWeek(
+                    new Date(
+                      2023,
+                      this.months.indexOf(this.monthToDisplay),
+                      this.selectedDay
+                    ),
+                    { weekStartsOn: 1 }
+                  );
+                  let end = endOfWeek(
+                    new Date(
+                      2023,
+                      this.months.indexOf(this.monthToDisplay),
+                      this.selectedDay
+                    ),
+                    { weekStartsOn: 1 }
+                  );
+
+                  for (let i = start.getDate(); i <= end.getDate(); i++) {
+                    if (point.hasOwnProperty(i)) {
+                      switch (type) {
+                        case "front":
+                          displayPoints.push(
+                            point[i].hood +
+                              point[i].lHeadlight +
+                              point[i].rHeadlight +
+                              point[i].windscreen
+                          );
+                          break;
+                        case "top":
+                          displayPoints.push(point[i].hood);
+                          break;
+                        case "back":
+                          displayPoints.push(point[i].boot);
+                          break;
+                        case "left":
+                          displayPoints.push(
+                            point[i].lfDoor +
+                              point[i].rfDoor +
+                              point[i].lfWheel +
+                              point[i].rfWheel +
+                              point[i].lfWindow +
+                              point[i].rfWindow
+                          );
+                          break;
+                        case "right":
+                          displayPoints.push(
+                            point[i].lbDoor +
+                              point[i].rbDoor +
+                              point[i].lbWheel +
+                              point[i].rbWheel +
+                              point[i].lbWindow +
+                              point[i].rbWindow
+                          );
+                          break;
+                      }
+                    } else {
+                      displayPoints.push(0);
                     }
-                  } else {
-                    displayPoints.push(0);
                   }
                 }
               }
             });
           }
-        })
+        });
       });
 
       return displayPoints;
