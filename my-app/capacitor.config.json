@@ -1,0 +1,11 @@
+{
+  "appId": "io.ddp.app",
+  "appName": "diamond-detailers-portal-customer",
+  "bundledWebRuntime": false,
+  "webDir": "dist",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  }
+}
