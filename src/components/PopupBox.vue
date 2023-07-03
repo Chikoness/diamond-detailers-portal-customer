@@ -6,7 +6,7 @@
       <p>{{ message2 }}</p>
       <p>{{ message3 }}</p>
       <div class="form-btn" v-if="displayButtons">
-        <ion-button color="danger" @click="$emit('confirm')">Confirm</ion-button>
+        <ion-button color="danger" :disabled="isClicked" @click="confirmClicked()">Confirm</ion-button>
         <ion-button :color="isEmployee ? 'light' : 'warning'" @click="$emit('close')">Cancel</ion-button>
       </div>
     </div>
@@ -18,9 +18,22 @@ import { IonButton } from "@ionic/vue";
 export default {
   props: ["isEmployee", "message", "message2", "message3", "displayButtons"],
 
+  data() {
+    return {
+      isClicked: false
+    }
+  },
+
   components: {
     IonButton,
   },
+
+  methods: {
+    confirmClicked() {
+      this.isClicked = true
+      this.$emit('confirm')
+    }
+  }
 };
 </script>
 
