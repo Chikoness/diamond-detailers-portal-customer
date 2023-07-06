@@ -178,7 +178,8 @@ export default {
 #history-page {
   height: 75%;
   padding: 0 1rem;
-  margin-top: 25%;
+  margin: 7rem auto 0 auto;
+  width: 40rem;
 
   .input-group {
     display: flex;
@@ -189,6 +190,12 @@ export default {
     }
 
     margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 700px) {
+  #history-page {
+    width: 100%;
   }
 }
 </style>

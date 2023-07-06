@@ -107,13 +107,13 @@ ion-button {
   margin: 0 auto;
   background: no-repeat url('@/assets/img/diamonddetailers.png');
   background-size: 100%;
-  width: 45vw;
-  height: 45vw;
+  width: 15rem;
+  height: 15rem;
   margin-bottom: 0.5rem;
 
   &.small {
-    width: 28vw;
-    height: 28vw;
+    width: 15rem;
+    height: 15rem;
     margin-bottom: 1rem;
   }
 }
@@ -198,11 +198,11 @@ form {
   color: red;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 700px) {
   .logo {
     &.small {
-      width: 10rem;
-      height: 10rem;
+      width: 12rem;
+      height: 12rem;
     }
   }
 }

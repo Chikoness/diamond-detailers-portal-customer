@@ -232,14 +232,14 @@ export default {
                   );
 
                   for (let i = start.getDate(); i <= end.getDate(); i++) {
-                    if (point.hasOwnProperty(i)) {
+                    if (point[i] !== undefined) {
                       switch (type) {
                         case "front":
                           displayPoints.push(
                             point[i].hood +
-                              point[i].lHeadlight +
-                              point[i].rHeadlight +
-                              point[i].windscreen
+                            point[i].lHeadlight +
+                            point[i].rHeadlight +
+                            point[i].windscreen
                           );
                           break;
                         case "top":

@@ -338,7 +338,9 @@ export default {
 
 <style lang="scss">
 #appt-new {
+  margin: auto;
   margin-top: 1.2rem;
+  width: 40rem;
 
   form {
     .date-div {
@@ -368,6 +370,12 @@ export default {
         opacity: 1;
       }
     }
+  }
+}
+
+@media (max-width: 700px) {
+  #appt-new {
+    width: 100%;
   }
 }
 </style>

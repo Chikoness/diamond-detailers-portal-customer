@@ -437,7 +437,9 @@ export default {
 
 <style lang="scss">
 #appt-exist {
+  margin: auto;
   margin-top: 1.2rem;
+  width: 40rem;
 
   .input-dirt {
     width: 60%;
@@ -475,6 +477,12 @@ export default {
         opacity: 1;
       }
     }
+  }
+}
+
+@media (max-width: 700px) {
+  #appt-exist {
+    width: 100%;
   }
 }
 </style>
