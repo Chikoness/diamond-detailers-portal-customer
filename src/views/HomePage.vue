@@ -221,5 +221,10 @@ form {
   h4 {
     margin-bottom: 1.5rem;
   }
+
+  ion-button {
+    margin: 0 auto;
+    width: 18rem;
+  }
 }
 </style>
