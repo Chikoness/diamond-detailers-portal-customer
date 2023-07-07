@@ -24,15 +24,11 @@ export default {
     this.$nextTick(function () {
       window.setInterval(() => {
         if (localStorage.getItem("email") !== undefined) {
-          console.log(coord.coords.latitude)
-          console.log(coord.coords.longitude)
 
           axios
             .get(
               `https://api.openweathermap.org/data/2.5/weather?lat=${coord.coords.latitude}&lon=${coord.coords.longitude}&appid=db4a24c53fcb9e886f91a65e5fd19e9c`
             ).then((res) => {
-              console.log(res.data.weather[0].id);
-
               let sendWeatherDistance = {
                 email: "chichiko90@gmail.com",
                 weatherDistance: {

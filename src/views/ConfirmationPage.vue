@@ -66,7 +66,6 @@ export default {
   },
 
   mounted() {
-    console.log(localStorage.getItem("id"))
     if (this.getPageType !== "deleteAppt") {
       axios
         .get(process.env.VUE_APP_BACKEND + "/api/appointment/get", {
