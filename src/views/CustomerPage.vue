@@ -47,6 +47,7 @@ export default {
   
   .title {
     text-align: center;
+    color: #fff;
   }
 
   .list {

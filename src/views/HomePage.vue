@@ -216,6 +216,11 @@ form {
     font: 1.7rem 'Gotham-Black';
     margin-top: 0.3rem;
     margin-bottom: 5rem;
+    color: #fff;
+  }
+
+  span {
+    color: #fff;
   }
 
   h4 {
